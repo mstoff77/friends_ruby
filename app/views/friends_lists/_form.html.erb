@@ -2,7 +2,6 @@
   <% if friends_list.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(friends_list.errors.count, "error") %> prohibited this friends_list from being saved:</h2>
-
       <ul>
         <% friends_list.errors.each do |error| %>
           <li><%= error.full_message %></li>

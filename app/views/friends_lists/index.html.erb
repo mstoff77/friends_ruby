@@ -1,14 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Friends lists</h1>
+<center>
+<h1>
+Friends lists
+</h1>
+</center>
 
 <div id="friends_lists">
   <% @friends_lists.each do |friends_list| %>
     <%= render friends_list %>
-    <p>
-      <%= link_to "Show this friends list", friends_list %>
-    </p>
+    <%= link_to "Show Details", friends_list, class:"btn btn-primary side-button" %>  
   <% end %>
 </div>
 
-<%= link_to "New friends list", new_friends_list_path %>
+<%= link_to "Add New Friend", new_friends_list_path ,class:"btn btn-success"%>
+<style>
+#friends_lists{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.side-button{
+  margin-right:50px;
+}
+</style>

@@ -3,7 +3,8 @@
 <%= render @friends_list %>
 
 <div>
-  <%= link_to "Edit this friends list", edit_friends_list_path(@friends_list) %> |
-  <%= link_to "Back to friends lists", friends_lists_path %>
-  <%= button_to "Destroy this friends list", @friends_list, method: :delete %>
+  <%= link_to "Update Info", edit_friends_list_path(@friends_list), class:"btn btn-primary my-3" %>
+  <%= link_to "Return", friends_lists_path, class:"btn btn-secondary my-3"%>
+  <%= button_to "Delete Friend", @friends_list, method: :delete,class:"btn btn-danger my-3 d-block" %>
 </div>
+  

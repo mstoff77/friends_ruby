@@ -52,7 +52,7 @@ class FriendsListsController < ApplicationController
     @friends_list.destroy
 
     respond_to do |format|
-      format.html { redirect_to friends_lists_url, notice: "Friends list was successfully destroyed." }
+      format.html { redirect_to friends_lists_url, notice: "Deleted Successfully" }
       format.json { head :no_content }
     end
   end
