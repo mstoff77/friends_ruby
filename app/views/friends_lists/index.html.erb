@@ -1,19 +1,25 @@
-<p style="color: green"><%= notice %></p>
-
+<% if user_signed_in?%>
 <center>
 <h1>
 Friends lists
 </h1>
 </center>
-
 <div id="friends_lists">
   <% @friends_lists.each do |friends_list| %>
-    <%= render friends_list %>
-    <%= link_to "Show Details", friends_list, class:"btn btn-primary side-button" %>  
+    <% if friends_list.user == current_user%>
+      <%= render friends_list %>
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "Add New Friend", new_friends_list_path ,class:"btn btn-success"%>
+<%= link_to "Add New Friend", new_friends_list_path ,class:"btn btn-success my-2"%>
+<% else %>
+  <center>
+  <h1>
+    HomePage
+  </h1>
+  </center>
+<% end %>
 <style>
 #friends_lists{
   display:flex;

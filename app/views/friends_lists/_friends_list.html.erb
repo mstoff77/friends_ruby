@@ -1,7 +1,7 @@
 <div id="<%= dom_id friends_list %>">
 <section class="profilex">
     <div class="labelx">
-      <%= friends_list.full_name %>
+      <%= link_to friends_list.full_name ,friends_list%>
     </div>
     <div class="labelx">
     <%= friends_list.about %>
@@ -15,6 +15,9 @@
     <div class="labelx">
     <%= friends_list.phone %>
     </div>  
+    <div class="labelx">
+    <%= friends_list.user_id %>
+    </div>  
 </div>
 <style>
 .profilex{
@@ -25,7 +28,9 @@ margin:14px 10px;
 border-radius:5px;
 box-shadow:1px 1px 5px rgba(0,0,0,0.15);
 margin-bottom:5px;
-background-color:rgb(240,240,240);
+/* background-color:rgb(240,240,240);
+ */
+background-color:lightpink;
 display: flex;
 flex-direction:column;
 justify-content:space-between;

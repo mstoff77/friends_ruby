@@ -1,5 +1,8 @@
 class FriendsListsController < ApplicationController
   before_action :set_friends_list, only: %i[ show edit update destroy ]
+  # before_action :authenticate_user!, except: [:index, :show]  
+  before_action :authenticate_user!, except: [:index]  
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /friends_lists or /friends_lists.json
   def index
@@ -12,7 +15,8 @@ class FriendsListsController < ApplicationController
 
   # GET /friends_lists/new
   def new
-    @friends_list = FriendsList.new
+    # @friends_list = FriendsList.new
+    @friends_list = current_user.friends_lists.build
   end
 
   # GET /friends_lists/1/edit
@@ -21,7 +25,8 @@ class FriendsListsController < ApplicationController
 
   # POST /friends_lists or /friends_lists.json
   def create
-    @friends_list = FriendsList.new(friends_list_params)
+    # @friends_list = FriendsList.new(friends_list_params)
+    @friends_list = current_user.friends_lists.build(friends_list_params)
 
     respond_to do |format|
       if @friends_list.save
@@ -57,6 +62,23 @@ class FriendsListsController < ApplicationController
     end
   end
 
+  def correct_user
+    @friends_list =current_user.friends_lists.find_by(id: params[:id])
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts @friends_list.inspect
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    puts '-------------------------------------------------'
+    redirect_to friends_lists_path, notice: "Not Authorized To Perform Action" if  @friends_list.nil?
+  end
+  def viewtest
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friends_list
@@ -65,6 +87,6 @@ class FriendsListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friends_list_params
-      params.require(:friends_list).permit(:full_name, :about, :email, :phone, :twitter)
+      params.require(:friends_list).permit(:full_name, :about, :email, :phone, :twitter, :user_id)
     end
 end

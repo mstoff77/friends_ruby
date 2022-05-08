@@ -5,5 +5,7 @@ class HomeController < ApplicationController
   end
   def about
     puts "about page"
+    @hello_var="Hello World"
+    @solution= 3+2
   end
 end
